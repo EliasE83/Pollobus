@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>CRUD de usuarios</title>
+
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename="estilos.css")}}">
+
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>CRUD de usuarios</h1>
+        <div class="tab">
+            <button class="tablinks" onclick="openTab(event, 'alumnos')">Consultar alumnos</button>
+            <button class="tablinks" onclick="openTab(event, 'operador')">Consultar operador</button>
+            <button class="tablinks" onclick="openTab(event, 'autobus')">Consultar autobus</button>
+            <button class="tablinks" onclick="openTab(event, 'ruta')">Consultar Ruta</button>
+        </div>
+
+        <div id="alumnos" class="tabcontent">
+            <h2 class="title">Consultar Alumnos</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Apellido P</th>
+                        <th>Apellido M</th>
+                        <th>Carrera</th>
+                        <th>Matricula</th>
+                        <th>Ruta</th>
+                        <th>Turno</th>
+                        <th>Viaje</th>
+                    </tr>
+                </thead>
+                <tbody id="alumnos-body"></tbody>
+            </table>
+            <button class="btn" onclick="consultarAlumno()">Consultar</button>
+        </div>
+
+        <div id="operador" class="tabcontent">
+            <h2 class="title">Consultar Autobus</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Apellido P</th>
+                        <th>Apellido M</th>
+                        <th># Empleado</th>
+                        <th>Licencia</th>
+                        <th>Vigencia</th>
+                        <th>Nombre</th>
+                    </tr>
+                </thead>
+                <tbody id="operador-body"></tbody>
+            </table>
+            <button class="btn" onclick="consultarOperador()">Consultar</button>
+        </div>
+
+        <div id="autobus" class="tabcontent">
+            <h2 class="title">Consultar Autobus</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Modelo</th>
+                        <th>Matricula</th>
+                        <th>Asientos</th>
+                        <th>Capacidad</th>
+                        <th>Marca</th>
+                    </tr>
+                </thead>
+                <tbody id="autobus-body"></tbody>
+            </table>
+            <button class="btn" onclick="consultarBus()">Consultar</button>
+        </div>
+
+        <div id="ruta" class="tabcontent">
+            <h2 class="title">Consultar Rutas</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Operador</th>
+                        <th>Autobus</th>
+                        <th>Hr. Salida</th>
+                        <th>Hr. Llegada</th>
+                        <th>Paradas</th>
+                    </tr>
+                </thead>
+                <tbody id="ruta-body"></tbody>
+            </table>
+            <button class="btn" onclick="consultarRuta()">Consultar</button>
+        </div>
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+
+    </script>
+</body>
+
+</html>

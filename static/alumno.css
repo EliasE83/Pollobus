@@ -1,0 +1,59 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f1f1f1;
+}
+
+.ventana {
+    text-align: center;
+}
+
+.fondo {
+    background-color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.label {
+    display: none;
+}
+
+.form-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.form-row label {
+    flex: 1;
+    text-align: right;
+    margin-right: 10px;
+}
+
+.input-field {
+    flex: 2;
+    width: 50%;
+    padding: 8px;
+    border: 1px solid #ccc;
+}
+
+.btn-registrar, .btn-reporte {
+    color: black;
+    background-color: #eee;
+    border: none;
+    padding: 8px 16px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+.btn-registrar:hover, .btn-reporte:hover {
+    background-color: #ddd;
+}

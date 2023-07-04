@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CRUD de Edición y Eliminación de Autobuses</title>
+
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename="estilos.css")}}">
+
+</head>
+<body>
+    <div class="container">
+        <h1>Editar Autobuses</h1>
+        <label for="id">ID Autobús a Editar:</label>
+        <input type="text" id="id" name="id">
+
+        <label for="modelo">Modelo:</label>
+        <input type="text" id="modelo" name="modelo">
+
+        <label for="matricula">Matrícula:</label>
+        <input type="text" id="matricula" name="matricula">
+
+        <label for="asientos">Número de Asientos:</label>
+        <input type="text" id="asientos" name="asientos">
+
+        <label for="capacidad">Capacidad del tanque de combustible:</label>
+        <input type="text" id="capacidad" name="capacidad">
+
+        <label for="marca">Marca:</label>
+        <input type="text" id="marca" name="marca">
+
+        <button id="editarUsuario">Editar Usuario</button>
+
+        <div class="tab">
+            <button class="tablinks" onclick="openTab(event, 'editar')">Editar usuarios</button>
+            <button class="tablinks" onclick="openTab(event, 'eliminar')">Eliminar usuarios</button>
+            <button class="tablinks" onclick="openTab(event, 'editarOperador')">Editar Operador</button>
+            <button class="tablinks" onclick="openTab(event, 'eliminarOperador')">Eliminar Operador</button>
+        </div>
+
+        <div id="editar" class="tabcontent">
+            <h2>Editar Usuario</h2>
+            <label for="idEditar">ID del Usuario a Editar:</label>
+            <input type="text" id="idEditar" name="idEditar">
+            <button id="eliminarUsuario">Eliminar Usuario</button>
+        </div>
+
+        <div id="eliminar" class="tabcontent">
+            <h2>Eliminar Usuario</h2>
+            <label for="idEliminar">ID del Usuario a Eliminar:</label>
+            <input type="text" id="idEliminar" name="idEliminar">
+            <button id="eliminarUsuario">Eliminar Usuario</button>
+        </div>
+
+        <div id="editarOperador" class="tabcontent">
+            <h2>Editar Operador</h2>
+            <label for="idOperador">ID Operador a Editar:</label>
+            <input type="text" id="idOperador" name="idOperador">
+
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre">
+
+            <label for="apellidoPaterno">Apellido Paterno:</label>
+            <input type="text" id="apellidoPaterno" name="apellidoPaterno">
+
+            <label for="apellidoMaterno">Apellido Materno:</label>
+            <input type="text" id="apellidoMaterno" name="apellidoMaterno">
+
+            <label for="numEmpleado">Número de empleado:</label>
+            <input type="text" id="numEmpleado" name="numEmpleado">
+
+            <label for="licencia">Licencia:</label>
+            <input type="text" id="licencia" name="licencia">
+
+            <label for="vigencia">Vigencia:</label>
+            <input type="text" id="vigencia" name="vigencia">
+
+            <button id="editarOperador">Editar Usuario</button>
+        </div>
+
+       
+        </div>
+    </div>
+
+    
+</body>
+</html>

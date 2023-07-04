@@ -1,0 +1,53 @@
+.container {
+    margin: 20px;
+}
+
+h1 {
+    font-size: 24px;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+}
+
+input[type="text"] {
+    width: 200px;
+    padding: 5px;
+    font-size: 14px;
+}
+
+button {
+    margin-top: 10px;
+    padding: 8px 16px;
+    font-size: 14px;
+}
+
+.tab {
+    margin-top: 20px;
+}
+
+.tab button {
+    background-color: #eee;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    font-size: 14px;
+}
+
+.tab button:hover {
+    background-color: #ccc;
+}
+
+.tab button.active {
+    background-color: #ccc;
+}
+
+.tabcontent {
+    display: none;
+}
+
+.tabcontent h2 {
+    margin-top: 20px;
+}

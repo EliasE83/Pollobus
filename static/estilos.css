@@ -1,0 +1,326 @@
+/* Estilos generales */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-image: url('fondo.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+
+}
+
+/* Estilos para el formulario */
+.ventana {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f2f2f2;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.2);
+}
+
+.fondo {
+  margin-top: 20px;
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.label {
+  text-align: center;
+}
+
+.input-field {
+  margin-left: 10px;
+  flex: 1;
+}
+.form-row label {
+  width: 120px;
+  display: inline-block;
+  text-align: right;
+  margin-right: 10px;
+}
+
+.input-field-small {
+  width: 100px;
+  margin-left: 10px;
+}
+/* botones*/
+
+.button-alumno {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  cursor: pointer;
+ justify-content: space-between;
+}
+
+
+/* botones de autobus*/
+.button-autobus {
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+  cursor: pointer;
+}
+.btn-autobus1,
+.btn-autobus2{
+  margin-right: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 5px 20px;
+  width: 95%;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin-top: 5px;
+  border-radius: 5px;
+  margin: 5 auto;
+}
+
+.btn-autobus1:hover,
+.btn-autobus2:hover {
+  background-color: #45a049;
+}
+
+
+/*crud*/
+
+.btn-ediusuario
+{margin-right: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 5px 20px;
+  width: 95%;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin-top: 5px;
+  border-radius: 5px;
+  margin: 5 auto;
+
+}
+.btn-ediusuario:hover {
+  background-color: #45a049;
+}
+
+.btn-asignar 
+.btn-guardar
+
+
+
+/* botones de alumno*/
+
+
+.btn-reporte {
+  margin-right: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 5px 20px;
+  width: 95%;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin-top: 5px;
+  border-radius: 5px;
+  margin: 5 auto;
+}
+
+.btn-registrar:hover,
+.btn-reporte:hover {
+  background-color: #45a049;
+}
+
+/* botones de operador*/
+.button-operador{
+  display: flex;
+  margin-top: 10px;
+  cursor: pointer;
+ justify-content: space-between;
+}
+
+.btn-insertar,
+.btn-eliminar {
+  margin-right: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 5px 20px;
+  width: 95%;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin-top: 5px;
+  border-radius: 5px;
+  margin: 5 auto;
+}
+
+/* Estilos para la ventana principal */
+.ventana {
+  width: 400px;
+}
+
+.label {
+  text-align: center;
+}
+
+/* Estilos para la página de inicio de sesión */
+#fondo {
+  width: 300px;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.2);
+  background-color: white;
+  
+}
+
+.label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.input {
+  width: 90%;
+  margin-bottom: 10px;
+  padding: 5px;
+  
+}
+
+#btn_iniciar {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 5px 20px;
+  width: 95%;
+
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin-top: 20px;
+  border-radius: 5px;
+  margin: 5 auto;
+  cursor: pointer;
+}
+
+#btn_iniciar:hover {
+  background-color: #45a049;
+  
+}
+
+/* Estilos para la página de gestión de pollobus */
+.ventana {
+  width: 400px;
+  
+}
+
+.bustexto {
+  text-align: center;
+}
+
+.fondo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  
+}
+
+.btn {
+  width: 150px;
+  margin-bottom: 10px;
+}
+
+/* Estilos para la página de CRUD de usuarios */
+.container {
+  width: 800px;
+  margin-top: 20px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.tab {
+  margin-bottom: 20px;
+}
+
+.tab button {
+  background-color: #f2f2f2;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  margin-right: 10px;
+  border-radius: 5px 5px 0 0;
+}
+
+.tab button:hover {
+  background-color: #ddd;
+}
+
+.tab button.active {
+  background-color: #ddd;
+}
+
+.tabcontent {
+  display: none;
+  padding: 20px;
+  background-color: #f2f2f2;
+  border-radius: 0 5px 5px 5px;
+}
+
+/* Estilos para las tablas */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 10px;
+}
+
+.table th,
+.table td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.table th {
+  background-color: #f2f2f2;
+}
+
+/* Estilos para los botones en las tablas */
+.btn {
+  padding: 5px 10px;
+  border: none;
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.btn:hover {
+  background-color: #45a049;
+}
+
+
+.btn-success {
+  background-color: #4caf50;
+}
+
+.btn-success:hover {
+  background-color: #45a049;
+}

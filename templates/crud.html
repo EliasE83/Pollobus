@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CRUD de Edición y Eliminación de Autobuses</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename="estilos.css")}}">
+</head>
+<body>
+    <div class="ventana">
+        <div class="fondo">
+            <h1 class="label">EDITAR AUTOBUS</h1>
+            <div class="form-row">
+                <label for="id">ID Autobús a Editar:</label>
+                <input type="text" id="id" name="id" class="input-field">
+            </div>
+
+            <div class="form-row">
+                <label for="modelo">Modelo:</label>
+                <input type="text" id="modelo" name="modelo" class="input-field">
+            </div>
+
+            <div class="form-row">
+                <label for="matricula">Matrícula:</label>
+                <input type="text" id="matricula" name="matricula" class="input-field">
+            </div>
+
+            <div class="form-row">
+                <label for="asientos">Número de Asientos:</label>
+                <input type="text" id="asientos" name="asientos" class="input-field">
+            </div>
+
+            <div class="form-row">
+                <label for="capacidad">Capacidad del tanque de combustible:</label>
+                <input type="text" id="capacidad" name="capacidad" class="input-field">
+            </div>
+
+            <div class="form-row">
+                <label for="marca">Marca:</label>
+                <input type="text" id="marca" name="marca" class="input-field">
+            </div>
+
+            <div class="btn-containerusu">
+                <button id="editarUsuario" class="btn-ediusuario">Editar Usuario</button>
+            </div>
+        </div>
+
+        <div class="tab">
+            <button class="tablinks" onclick="openTab(event, 'editar')">Editar usuarios</button>
+            <button class="tablinks" onclick="openTab(event, 'eliminar')">Eliminar usuarios</button>
+            <button class="tablinks" onclick="openTab(event, 'editarOperador')">Editar Operador</button>
+            <button class="tablinks" onclick="openTab(event, 'eliminarOperador')">Eliminar Operador</button>
+        </div>
+
+        <div id="editar" class="tabcontent">
+            <h2>Editar Usuario</h2>
+            <div class="ventana">
+                <div class="form-row">
+                    <label for="idEditar">ID del Usuario a Editar:</label>
+                    <input type="text" id="idEditar" name="idEditar" class="input-field">
+                </div>
+                <div class="button-crud">
+                    <button id="eliminarUsuario" class="btn-eliminar1">Eliminar Usuario</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="eliminar" class="tabcontent">
+            <h2>Eliminar Usuario</h2>
+            <div class="ventana">
+                <div class="form-row">
+                    <label for="idEliminar">ID del Usuario a Eliminar:</label>
+                    <input type="text" id="idEliminar" name="idEliminar" class="input-field">
+                </div>
+                <div class="button-operador">
+                    <button id="eliminarUsuario" class="btn-eliminar">Eliminar Usuario</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="editarOperador" class="tabcontent">
+            <h2>Editar Operador</h2>
+            <div class="ventana">
+                <div class="form-row">
+                    <label for="idEditarOperador">ID del Operador a Editar:</label>
+                    <input type="text" id="idEditarOperador" name="idEditarOperador" class="input-field">
+                </div>
+                <div class="button-operador">
+                    <button id="eliminarOperador" class="btn-eliminar">Eliminar Operador</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="eliminarOperador" class="tabcontent">
+            <h2>Eliminar Operador</h2>
+            <div class="ventana">
+                <div class="form-row">
+                    <label for="idEliminarOperador">ID del Operador a Eliminar:</label>
+                    <input type="text" id="idEliminarOperador" name="idEliminarOperador" class="input-field">
+                </div>
+                <div class="button-operador">
+                    <button id="eliminarOperador" class="btn-eliminar">Eliminar Operador</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

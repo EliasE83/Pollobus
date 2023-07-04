@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>RUTA</title>
+
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename="estilos.css")}}">
+
+</head>
+
+<body>
+    <div class="ventana">
+        <div class="fondo">
+            <label class="bustexto">Seleccione la ruta a asignar</label>
+            <select class="dropdown"></select><br>
+            <label class="bustexto">Seleccione un operador</label>
+            <select class="dropdown"></select><br>
+            <label class="bustexto">Seleccione un autobus</label>
+            <select class="dropdown"></select><br>
+            <label class="bustexto">Seleccione una hora de salida</label>
+            <select class="dropdown"></select><br>
+            <label class="bustexto">Seleccione una hora de llegada</label>
+            <select class="dropdown"></select><br>
+            <div class="paradas-container">
+                <label class="bustexto">Total paradas</label>
+                <input type="text" id="paradas" class="paradas" placeholder="Ingrese el número">
+            </div>
+            <div class="button-container">
+
+                <a href="/ventana"><button class="btn btn-regresar" id="btnatoreg">Regresar</button></a>
+
+                <button class="btn btn-asignar" id="btnatasigdato">Asignar ruta</button>
+                <button class="btn btn-reporte" id="btnatreporte">Generar reporte</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
