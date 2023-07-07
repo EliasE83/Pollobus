@@ -7,42 +7,47 @@
 
 </head>
 <body>
+    <form action=#>
     <div class="ventana">
         <div class="fondo">
             <h1 class="label">AUTOBUS</h1>
 
             <div class="form-row">
                 <label for="marca">Marca</label>
-                <input type="text" id="marca" class="input-field">
+                <input type="text" id="marca" class="input-field" name="marca">
             </div>
 
             <div class="form-row">
                 <label for="modelo">Modelo</label>
-                <input type="text" id="modelo" class="input-field">
+                <input type="text" id="modelo" class="input-field" name="modelo">
             </div>
 
             <div class="form-row">
                 <label for="matricula">Matricula</label>
-                <input type="text" id="matricula" class="input-field">
+                <input type="text" id="matricula" class="input-field" name="matri">
             </div>
 
             <div class="form-row">
                 <label for="asientos">N de asientos</label>
-                <input type="text" id="asientos" class="input-field">
+                <input type="text" id="asientos" class="input-field" name="asientos">
             </div>
 
             <div class="form-row">
                 <label for="tanque">Capacidad de tanque</label>
-                <input type="text" id="tanque" class="input-field-small">
+                <input type="text" id="tanque" class="input-field-small" name="tanque">
             </div>
 
 
-            <div class="button-autobus">
-                <button class="btn-autobus1">Registrar Alumno</button>
-                <button class="btn-autobus2">Generar reporte</button>
+            <div class="button-container">
+
+                <a href="/ventana"><button class="btn btn-regresar" id="btnatoreg">Regresar</button></a>
+
+                <button class="btn btn-asignar" id="btnatasigdato" type="submit">Asignar Autobus</button>
+                <button class="btn btn-reporte" id="btnatreporte">Generar reporte</button>
             </div>
 
         </div>
     </div>
+    </form>
 </body>
 </html>
