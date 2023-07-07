@@ -15,7 +15,7 @@
             
 
             <label class="bustexto">Seleccione la ruta a asignar</label>
-            <select class="dropdown" name="ruta">
+            <select class="dropdown" name="ruta" required>
                 <option value="Ruta 1">Ruta 1</option>
                 <option value="Ruta 2">Ruta 2</option>
                 <option value="Ruta 3">Ruta 3</option>
@@ -25,7 +25,7 @@
             </select><br>
 
             <label class="bustexto">Seleccione un operador</label>
-            <select class="dropdown" name="operador">
+            <select class="dropdown" name="operador" required>
                 {% for op in lsOp %}
                     <option value="{{op.0}}">{{op.0}}</option>
                 {%endfor%}
@@ -35,7 +35,7 @@
             </select><br>
 
             <label class="bustexto">Seleccione un autobus</label>
-            <select class="dropdown" name="autobus">
+            <select class="dropdown" name="autobus" required>
                 {% for op in lsAut %}
                     <option value="{{op.0}}">{{op.0}}</option>
                 {%endfor%}
@@ -45,7 +45,7 @@
             </select><br>
 
             <label class="bustexto">Seleccione una hora de salida</label>
-            <select class="dropdown" name="salida">
+            <select class="dropdown" name="salida" required>
                 <option value="6:00">6:00</option>
                 <option value="12:00">12:00</option>
                 <option value="2:00">2:00</option>
@@ -54,7 +54,7 @@
             <br>
 
             <label class="bustexto">Seleccione una hora de llegada</label>
-            <select class="dropdown" name="hora">
+            <select class="dropdown" name="hora" required>
                 <option value="7:00">7:00</option>
                 <option value="13:50">13:50</option>
                 <option value="3:40">3:40</option>
@@ -63,7 +63,7 @@
 
             <div class="paradas-container">
                 <label class="bustexto">Total paradas</label>
-                <input type="number" name="paradas" id="paradas" class="paradas" placeholder="Ingrese el número">
+                <input type="number" name="paradas" id="paradas" class="paradas" placeholder="Ingrese el número" required>
             </div>
             <br>
             <div class="button-container">
