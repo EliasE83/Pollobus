@@ -9,7 +9,7 @@ app=Flask(__name__,)
 app.config['MYSQL_HOST']='localhost'
 app.config['MYSQL_USER']='root'
 app.config['MYSQL_PASSWORD']=''
-app.config['MYSQL_DB']='dbflask'
+app.config['MYSQL_DB']='pi'
 app.secret_key='mysecretkey'
 mysql=MySQL(app)
 
@@ -31,95 +31,101 @@ def route():
 #Código para agregar info
 @app.route('/ruta')
 def ruta():
-    if request.method == 'POST':
+    cop = mysql.connection.cursor()
+    cop.execute('select * nombre operadores')
+    consultaop = cop.fetchone()
+
+    cautobus = mysql.connection.cursor()
+    cautobus.execute('select matricula from autobuses')
+    consultaautobus = cautobus.fetchone()
+
+    return render_template('ruta.html', lsOp = consultaop, lsAut = consultaautobus)
+
+
+@app.route('/rutaForm', methods=['POST'])
+def rutaForm():
+        if request.method == 'POST':
         
-        vruta= request.form['ruta']
-        voperador= request.form['operador']
-        vbus= request.form['autobus']
-        vsalida= request.form['salida']
-        vhora= request.form['hora']
-        vparadas= request.form['paradas']
+            vruta= request.form['ruta']
+            voperador= request.form['operador']
+            vbus= request.form['autobus']
+            vsalida= request.form['salida']
+            vhora= request.form['hora']
+            vparadas= request.form['paradas']
+            
+            cs = mysql.connection.cursor()
+            cs.execute('insert into rutas (ruta, operador, autobus, horasalida, horallegada, noparadas) values (%s,%s,%s,%s,%s,%s)', (vruta,voperador,vbus,vsalida,vhora,vparadas))
+            mysql.connection.commit()
         
-        cs = mysql.connection.cursor()
-        #falta tabla
-        #cs.execute('insert into (,artista,anio) values (%s,%s,%s)', (vtitulo,vartista,vanio))
-        mysql.connection.commit()
-        
-    flash('El album fue agregado correctamente')
-    return redirect(url_for('ruta'))
+        return render_template('ventanaemergente.html')
 
 @app.route('/autobus')
 def autobus():
     return render_template('autobus.html')
 
 #para asignar datos en bus
-@app.route('/busform')
+@app.route('/busform', methods=['POST'])
 def busform():
     if request.method == 'POST':
         
-        vruta= request.form['marca']
-        voperador= request.form['modelo']
-        vbus= request.form['matri']
-        vsalida= request.form['asientos']
-        vhora= request.form['tanque']
+        vmarca= request.form['marca']
+        vmodelo= request.form['modelo']
+        vmatricula= request.form['matri']
+        vasientos= request.form['asientos']
+        vtanque= request.form['tanque']
         
         cs = mysql.connection.cursor()
-        #falta tabla
-        #cs.execute('insert into (,artista,anio) values (%s,%s,%s)', (vtitulo,vartista,vanio))
+        cs.execute('insert into autobuses (marca, modelo, matricula, noasientos, capacidadtanque) values (%s,%s,%s,%s,%s)', (vmarca,vmodelo,vmatricula,vasientos,vtanque))
         mysql.connection.commit()
         
-    flash('El album fue agregado correctamente')
-    return redirect(url_for('autobus'))
+    return render_template('ventanaemergente.html')
 
 @app.route('/operador')
 def operador():
     return render_template('operador.html')
 
 #form para datos en operador
-@app.route('/operadorForm')
+@app.route('/operadorForm', methods=['POST'])
 def operadorForm():
     if request.method == 'POST':
         
-        vruta= request.form['nombre']
-        voperador= request.form['ap']
-        vbus= request.form['am']
-        vsalida= request.form['N_empleado']
-        vhora= request.form['licencia']
-        vVigencia= request.form['vigencia']
+        vnombreo = request.form['nombre']
+        voperadoro = request.form['ap']
+        vamo = request.form['am']
+        vlic = request.form['licencia']
+        vVigencia = request.form['vigencia']
+        vnempleado = request.form.get('nempleado', False)
         
         cs = mysql.connection.cursor()
-        #falta tabla
-        #cs.execute('insert into (,artista,anio) values (%s,%s,%s)', (vtitulo,vartista,vanio))
+        cs.execute('insert into operadores (nombre, apellidop, apellidom, numeroempleado, licencia, vigencia) values (%s,%s,%s,%s,%s,%s)', (vnombreo,voperadoro,vamo,vnempleado,vlic,vVigencia))
         mysql.connection.commit()
         
-    flash('El album fue agregado correctamente')
-    return redirect(url_for('operador'))
+    return render_template('ventanaemergente.html')
 
 @app.route('/alumno')
 def alumno():
     return render_template('alumnno.html')
 
 #form para insercion de datos alumno
-@app.route('/alumnoForm')
+@app.route('/alumnoForm', methods=['POST'])
 def alumnoForm():
     if request.method == 'POST':
         
-        vruta= request.form['nombre']
-        voperador= request.form['ap']
-        vbus= request.form['am']
-        vsalida= request.form['carrera']
-        vhora= request.form['matri']
+        vnombre= request.form['nombre']
+        vap= request.form['ap']
+        vam= request.form['am']
+        vcarrera= request.form['carrera']
+        vmatri= request.form['matri']
         vruta= request.form['ruta']
         vturno= request.form['turno']
         vTipo= request.form['tipo-viaje']
         
         cs = mysql.connection.cursor()
-        #falta tabla
-        #cs.execute('insert into (,artista,anio) values (%s,%s,%s)', (vtitulo,vartista,vanio))
+        cs.execute('insert into alumnos(nombre, apellidop, apellidom, carrera, matricula, ruta, turno, tipodeviaje) values (%s,%s,%s,%s,%s,%s,%s,%s)', (vnombre,vap,vam,vcarrera,vmatri,vruta,vturno,vTipo))
         mysql.connection.commit()
         
-    flash('El album fue agregado correctamente')
-    return redirect(url_for('operador'))
+    
+    return render_template('ventanaemergente.html')
 
 @app.route('/consulta')
 def consulta():

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>RUTA</title>
+    <title>Alumnos</title>
 
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename="estilos.css")}}">
 
 </head>
 <body>
-    <form>
+    <form action="/alumnoForm" method="POST">
     <div class="ventana">
         <div class="fondo">
             <h1 class="label">ALUMNO</h1>
@@ -51,14 +51,9 @@
                 <label for="tipo-viaje">Tipo de viaje</label>
                 <input type="text" id="tipo-viaje" class="input-field" name="tipo-viaje">
             </div>
-    
-            <div class="button-alumno">
-                <button class="btn-reporte" type="submit">Registrar</button>
-                <button class="btn-reporte" type="submit">Reporte</button>
-              </div>
-              
-              
-            
+
+            <button class="btn btn-regresar" type="submit">Registrar</button>
+
         </div>
     </div>
     </form>

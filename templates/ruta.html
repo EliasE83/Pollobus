@@ -9,33 +9,72 @@
 </head>
 
 <body>
+    <form action="/rutaForm" method="POST">
     <div class="ventana">
         <div class="fondo">
+            
+
             <label class="bustexto">Seleccione la ruta a asignar</label>
-            <select class="dropdown" name="ruta"></select><br>
+            <select class="dropdown" name="ruta">
+                <option value="Ruta 1">Ruta 1</option>
+                <option value="Ruta 2">Ruta 2</option>
+                <option value="Ruta 3">Ruta 3</option>
+                <option value="Ruta 4">Ruta 6</option>
+                <option value="Ruta 5">Ruta 5</option>
+                <option value="Ruta 6">Ruta 6</option>
+            </select><br>
+
             <label class="bustexto">Seleccione un operador</label>
-            <select class="dropdown" name="operador"></select><br>
+            <select class="dropdown" name="operador">
+                {% for op in lsOp %}
+                    <option value="{{op.0}}">{{op.0}}</option>
+                {%endfor%}
+                <option value="Op 1">Operador 1</option>
+                <option value="Op 2">Operador 2</option>
+                <option value="Op 3">Operador 3</option>
+            </select><br>
+
             <label class="bustexto">Seleccione un autobus</label>
-            <select class="dropdown" name="autobus"></select><br>
+            <select class="dropdown" name="autobus">
+                {% for op in lsAut %}
+                    <option value="{{op.0}}">{{op.0}}</option>
+                {%endfor%}
+                <option value="Aut 1">Autobus 1</option>
+                <option value="Aut 2">Autobus 2</option>
+                <option value="Aut 3">Autobus 3</option>
+            </select><br>
+
             <label class="bustexto">Seleccione una hora de salida</label>
-            <select class="dropdown" name="salida"></select><br>
+            <select class="dropdown" name="salida">
+                <option value="6:00">6:00</option>
+                <option value="12:00">12:00</option>
+                <option value="2:00">2:00</option>
+                <option value="20:40">20:40</option>
+            </select>
+            <br>
+
             <label class="bustexto">Seleccione una hora de llegada</label>
-            <select class="dropdown" name="hora"></select><br>
+            <select class="dropdown" name="hora">
+                <option value="7:00">7:00</option>
+                <option value="13:50">13:50</option>
+                <option value="3:40">3:40</option>
+            </select>
+            <br>
+
             <div class="paradas-container">
                 <label class="bustexto">Total paradas</label>
                 <input type="number" name="paradas" id="paradas" class="paradas" placeholder="Ingrese el número">
             </div>
+            <br>
             <div class="button-container">
-
-                <a href="/ventana"><button class="btn btn-regresar" id="btnatoreg">Regresar</button></a>
-
+            <!-- <a href="/ventana"><button class="btn btn-regresar" id="btnatoreg">Regresar</button></a> -->    
                 <button class="btn btn-asignar" id="btnatasigdato">Asignar ruta</button>
-                <button class="btn btn-reporte" id="btnatreporte">Generar reporte</button>
+            
             </div>
         </div>
     </div>
+</form>
 
-    <script src="script.js"></script>
 </body>
 
 </html>
