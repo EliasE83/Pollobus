@@ -32,12 +32,12 @@ def route():
 @app.route('/ruta')
 def ruta():
     cop = mysql.connection.cursor()
-    cop.execute('select * nombre operadores')
-    consultaop = cop.fetchone()
+    cop.execute('select nombre from operadores')
+    consultaop = cop.fetchall()
 
     cautobus = mysql.connection.cursor()
     cautobus.execute('select matricula from autobuses')
-    consultaautobus = cautobus.fetchone()
+    consultaautobus = cautobus.fetchall()
 
     return render_template('ruta.html', lsOp = consultaop, lsAut = consultaautobus)
 
