@@ -1,17 +1,24 @@
 #Importacion del framework
 from flask import Flask, render_template, request, redirect, url_for, flash
-from flask_mysqldb import MySQL
+#from flask_mysqldb import MySQL
+import pyodbc
 
 #Inicializacion del Servidor
 app=Flask(__name__,)
 
-#Configuracion de la conexion
-app.config['MYSQL_HOST']='localhost'
-app.config['MYSQL_USER']='root'
-app.config['MYSQL_PASSWORD']=''
-app.config['MYSQL_DB']='pi'
-app.secret_key='mysecretkey'
-mysql=MySQL(app)
+#Configuracion de la conexion 
+ 
+#app.config['MYSQL_HOST']='localhost'
+#app.config['MYSQL_USER']='root'
+#app.config['MYSQL_PASSWORD']=''
+#app.config['MYSQL_DB']='pi'
+#app.secret_key='mysecretkey'
+#mysql=MySQL(app)
+
+
+#Conexion a SQL Server
+
+app.config['SQL_SERVER_URI']='Driver={SQL Server};Server=ELIAS;Database=ProyectoIntegrador;UID=DBA;PWD=1234;Trusted_Connection=yes;'
 
 #Declaracion de la ruta http://localhost:5000
 @app.route('/')
@@ -31,15 +38,16 @@ def route():
 #Código para agregar info
 @app.route('/ruta')
 def ruta():
-    cop = mysql.connection.cursor()
-    cop.execute('select nombre from operadores')
-    consultaop = cop.fetchall()
+    con = pyodbc.connect(app.config['SQL_SERVER_URI'])
+    cursor = con.cursor()
+    cursor.execute('select Personas.nombre from Operadores inner join Personas on Personas.id_persona = Operadores.id_persona')
+    consultaop = cursor.fetchall()
 
-    cautobus = mysql.connection.cursor()
-    cautobus.execute('select matricula from autobuses')
-    consultaautobus = cautobus.fetchall()
+    #cautobus = mysql.connection.cursor()
+    #cautobus.execute('select matricula from autobuses')
+    #consultaautobus = cautobus.fetchall()
 
-    return render_template('ruta.html', lsOp = consultaop, lsAut = consultaautobus)
+    return render_template('ruta.html', lsOp = consultaop)
 
 
 @app.route('/rutaForm', methods=['POST'])
