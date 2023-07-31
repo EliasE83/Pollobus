@@ -1,0 +1,59 @@
+{% extends 'plantilla.html' %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Autobuses registrados</h1>
+            <br>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nº Asientos</th>
+                        <th>Capacidad del tanque (lt)</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for bus in lsBus%}
+                    <tr>
+                        <td> {{bus.0}} </td>
+                        <td> {{bus.1}} </td>
+                        <td> {{bus.2}} </td> 
+                        <td> {{bus.3}} </td>
+                        <td> {{bus.4}} </td>                     
+                        <td>
+                            <a href="/editabus/{{bus.0}}" class="btn btn-warning">Editar</a>
+                            <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Eliminar">Eliminar</a>
+                            <!-- Modal para eliminar -->
+                            <div class="modal fade" id="Eliminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Eliminar Registro</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        ¿Está seguro que desea eliminar el registro?
+                                    </div>
+                                    <div class="modal-footer">
+                                    <a href="/eliminarbus/{{bus.0}}" class="btn btn-danger">Eliminar</a>    
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>                                            
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

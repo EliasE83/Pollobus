@@ -1,18 +1,54 @@
 /* Estilos generales */
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
   height: 100vh;
   margin: 0;
-  background-image: url('fondo.jpeg');
+  background-image: url('camion.png');
   background-repeat: no-repeat;
+  background-attachment: fixed;
   background-size: cover;
+
   
 
 }
 
 /* Estilos para el formulario */
+
+.colorazul{
+  background-color: #092d74 !important;
+}
+
+.formulario {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.logoRedondo {
+  text-align: center;
+  width: 150px;
+  height: 150px;
+}
+
+.navbar a{
+  color: white;
+}
+
+.dropdown-menu a{
+  color: black;
+}
+
+.container {
+  width: 800px;
+  margin-top: 20px;
+  color: white;
+}
+
+/* Estilos para la ventana principal */
 .ventana {
   display: flex;
   flex-direction: column;
@@ -35,6 +71,7 @@ body {
 
 .label {
   text-align: center;
+  color: #092d74;
 }
 
 .input-field {
@@ -201,7 +238,7 @@ body {
 }
 
 #btn_iniciar {
-  background-color: #4caf50;
+  background-color: #092d74;
   color: white;
   border: none;
   padding: 5px 20px;
@@ -218,7 +255,7 @@ body {
 }
 
 #btn_iniciar:hover {
-  background-color: #45a049;
+  background-color: #092d74;
   
 }
 
@@ -230,6 +267,7 @@ body {
 
 .bustexto {
   text-align: center;
+  color: #092d74;
 }
 
 .fondo {

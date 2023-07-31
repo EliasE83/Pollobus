@@ -1,0 +1,36 @@
+{% extends 'plantilla.html' %}
+
+{% block body %}
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <form action="/editarutaBD/{{lscRutas.0.0}}" class="formulario" method="POST">
+                <div id="fondo">
+                    <img src="{{url_for('static', filename="UPQLOGOREDONDO.png")}}" class="logoRedondo">
+            
+                    <h1 class="bustexto">Editar ruta</h1>            
+            
+                    <label class="label">Nombre</label>
+                    <input class="input" type="text" name="renombre" value="{{lscRutas.0.1}}" required/>
+            
+                    <label class="label">Numero</label>
+                    <input class="input" type="number" name="renumero" value="{{lscRutas.0.2}}" required/>
+                    
+                    <label class="label">Nº Paradas</label>
+                    <input class="input" type="number" name="reparadas" value="{{lscRutas.0.3}}" required/> 
+
+                    <button id="btn_iniciar" type="submit">Actualizar</button>
+            
+                </div>
+                </form>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

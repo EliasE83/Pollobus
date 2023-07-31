@@ -4,11 +4,15 @@
     <title>LOGEO</title>
 
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename="estilos.css")}}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
 </head>
 <body>
-    <form action="/ventana">
+    <form action="/index" class="formulario">
     <div id="fondo">
-        <h1 class="bustexto">INICIO DE SECCION</h1>
+        <img src="{{url_for('static', filename="UPQLOGOREDONDO.png")}}" class="logoRedondo">
+
+        <h1 class="bustexto">INICIO DE SESIÓN</h1>
 
 
 

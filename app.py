@@ -27,121 +27,135 @@ def index():
 
 #Ruta http://localhost:5000/guardar tipo POST para insert
 
-@app.route('/ventana')
+@app.route('/index')
 def inicio():
-    return render_template('ventana.html')
+    return render_template('index.html')
 
-@app.route('/route')
-def route():
-    return render_template('ruta.html')
+#Rutas
 
-#Código para agregar info
-@app.route('/ruta')
-def ruta():
+@app.route('/registroruta')
+def registroruta():
+    return render_template('rutas/registroruta.html')
+
+@app.route('/registrorutabs', methods=['POST'])
+def registrorutabs():
+    if request.method == 'POST':
+
+        vrnombre = request.form['rnombre']
+        vrnumero = request.form['rnumero']
+        vrparadas = request.form['rparadas']
+        
+        con = pyodbc.connect(app.config['SQL_SERVER_URI'])
+        cursor = con.cursor()
+        cursor.execute('insert into Rutas (nombre, numero, noparadas) values (?,?,?)', (vrnombre,vrnumero,vrparadas))
+        con.commit()
+        con.close()
+        
+    return render_template('ventanaemergente.html')
+
+
+@app.route('/consultaruta')
+def consultaruta():
     con = pyodbc.connect(app.config['SQL_SERVER_URI'])
     cursor = con.cursor()
-    cursor.execute('select Personas.nombre from Operadores inner join Personas on Personas.id_persona = Operadores.id_persona')
-    consultaop = cursor.fetchall()
+    cursor.execute('select * from Rutas')
+    consultas = cursor.fetchall()
+    return render_template('rutas/ruta.html', lsRutas = consultas)
 
-    #cautobus = mysql.connection.cursor()
-    #cautobus.execute('select matricula from autobuses')
-    #consultaautobus = cautobus.fetchall()
+@app.route('/editaruta/<id>')
+def editaruta(id):
+    con = pyodbc.connect(app.config['SQL_SERVER_URI'])
+    cursor = con.cursor()
+    cursor.execute('select * from Rutas where id_ruta = ?', (id))
+    editaruta = cursor.fetchall()
+    return render_template('rutas/editaruta.html', lscRutas = editaruta)
 
-    return render_template('ruta.html', lsOp = consultaop)
-
-
-@app.route('/rutaForm', methods=['POST'])
-def rutaForm():
-        if request.method == 'POST':
-        
-            vruta= request.form['ruta']
-            voperador= request.form['operador']
-            vbus= request.form['autobus']
-            vsalida= request.form['salida']
-            vhora= request.form['hora']
-            vparadas= request.form['paradas']
-            
-            cs = mysql.connection.cursor()
-            cs.execute('insert into rutas (ruta, operador, autobus, horasalida, horallegada, noparadas) values (%s,%s,%s,%s,%s,%s)', (vruta,voperador,vbus,vsalida,vhora,vparadas))
-            mysql.connection.commit()
-        
-        return render_template('ventanaemergente.html')
-
-@app.route('/autobus')
-def autobus():
-    return render_template('autobus.html')
-
-#para asignar datos en bus
-@app.route('/busform', methods=['POST'])
-def busform():
+@app.route('/editarutaBD/<id>', methods=['POST'])
+def editarutaBD(id):
     if request.method == 'POST':
-        
-        vmarca= request.form['marca']
-        vmodelo= request.form['modelo']
-        vmatricula= request.form['matri']
-        vasientos= request.form['asientos']
-        vtanque= request.form['tanque']
-        
-        cs = mysql.connection.cursor()
-        cs.execute('insert into autobuses (marca, modelo, matricula, noasientos, capacidadtanque) values (%s,%s,%s,%s,%s)', (vmarca,vmodelo,vmatricula,vasientos,vtanque))
-        mysql.connection.commit()
-        
+        vrnombre = request.form['renombre']
+        vrnumero = request.form['renumero']
+        vrparadas = request.form['reparadas']
+
+        con = pyodbc.connect(app.config['SQL_SERVER_URI'])
+        cursor = con.cursor()
+        cursor.execute('update Rutas set nombre = ?, numero = ?, noparadas = ? where id_ruta = ?', (vrnombre,vrnumero,vrparadas,id))
+        print (vrnombre + ' ' + vrnumero + ' ' + vrparadas + ' ' + id)
+        con.commit()
+        con.close()
+    return redirect(url_for('consultaruta'))
+
+@app.route('/eliminaruta/<id>')
+def eliminaruta(id):
+    con = pyodbc.connect(app.config['SQL_SERVER_URI'])
+    cursor = con.cursor()
+    cursor.execute('delete from Rutas where id_ruta = ?', (id))
+    con.commit()
+    con.close()
+    return redirect(url_for('consultaruta'))
+
+#Autobuses
+
+@app.route('/consultabus')
+def consultabus():
+    con = pyodbc.connect(app.config['SQL_SERVER_URI'])
+    cursor = con.cursor()
+    cursor.execute('select id_autobus, noasientos, capacidadtanque, Marcas.marca, Modelos.modelo  from Autobuses inner join Modelos on Modelos.id_modelo = Autobuses.id_modelo inner join Marcas on Marcas.id_marca = Modelos.id_marca')
+    consultas = cursor.fetchall()
+    return render_template('autobuses/consultabus.html', lsBus = consultas)
+
+@app.route('/eliminarbus/<id>')
+def eliminarbus(id):
+    con = pyodbc.connect(app.config['SQL_SERVER_URI'])
+    cursor = con.cursor()
+    cursor.execute('delete from Autobuses where id_autobus = ?', (id))
+    con.commit()
+    con.close()
+    return redirect(url_for('consultabus'))
+
+@app.route('/registrarbus')
+def registrarbus():
+    con = pyodbc.connect(app.config['SQL_SERVER_URI'])
+    cursor = con.cursor()
+    cursor.execute('select id_modelo, modelo from Modelos')
+    consultas2 = cursor.fetchall()
+
+    return render_template('autobuses/registrarbus.html',  lsModelo = consultas2)
+
+@app.route('/registrarbusBD', methods=['POST'])
+def registrarbusBD():
+    vmodelo = request.form['rmodelo']
+    vnoasientos = request.form['asientos']
+    vtanque = request.form['tanque']
+    con = pyodbc.connect(app.config['SQL_SERVER_URI'])
+    cursor = con.cursor()
+    cursor.execute('insert into Autobuses (id_modelo, noasientos, capacidadtanque) values (?,?,?)', (vmodelo,vnoasientos,vtanque))
+    con.commit()
+    con.close()
     return render_template('ventanaemergente.html')
 
-@app.route('/operador')
-def operador():
-    return render_template('operador.html')
+@app.route('/editabus/<id>')
+def editabus(id):
+    con = pyodbc.connect(app.config['SQL_SERVER_URI'])
+    cursor = con.cursor()
+    cursor.execute('select * from Autobuses where id_autobus = ?', (id))
+    consultas = cursor.fetchall()
+    return render_template('autobuses/editarbus.html', lscBus = consultas)
 
-#form para datos en operador
-@app.route('/operadorForm', methods=['POST'])
-def operadorForm():
+@app.route('/editarbusBD/<id>', methods=['POST'])
+def editarbusBD(id):
     if request.method == 'POST':
-        
-        vnombreo = request.form['nombre']
-        voperadoro = request.form['ap']
-        vamo = request.form['am']
-        vlic = request.form['licencia']
-        vVigencia = request.form['vigencia']
-        vnempleado = request.form.get('nempleado', False)
-        
-        cs = mysql.connection.cursor()
-        cs.execute('insert into operadores (nombre, apellidop, apellidom, numeroempleado, licencia, vigencia) values (%s,%s,%s,%s,%s,%s)', (vnombreo,voperadoro,vamo,vnempleado,vlic,vVigencia))
-        mysql.connection.commit()
-        
-    return render_template('ventanaemergente.html')
+        vrmodelo = request.form['remodelo']
+        vrnoasientos = request.form['reasientos']
+        vrtanque = request.form['retanque']
 
-@app.route('/alumno')
-def alumno():
-    return render_template('alumnno.html')
+        con = pyodbc.connect(app.config['SQL_SERVER_URI'])
+        cursor = con.cursor()
+        cursor.execute('update Autobuses set id_modelo = ?, noasientos = ?, capacidadtanque = ? where id_autobus = ?', (vrmodelo,vrnoasientos,vrtanque,id))
+        con.commit()
+        con.close()
+    return redirect(url_for('consultabus'))
 
-#form para insercion de datos alumno
-@app.route('/alumnoForm', methods=['POST'])
-def alumnoForm():
-    if request.method == 'POST':
-        
-        vnombre= request.form['nombre']
-        vap= request.form['ap']
-        vam= request.form['am']
-        vcarrera= request.form['carrera']
-        vmatri= request.form['matri']
-        vruta= request.form['ruta']
-        vturno= request.form['turno']
-        vTipo= request.form['tipo-viaje']
-        
-        cs = mysql.connection.cursor()
-        cs.execute('insert into alumnos(nombre, apellidop, apellidom, carrera, matricula, ruta, turno, tipodeviaje) values (%s,%s,%s,%s,%s,%s,%s,%s)', (vnombre,vap,vam,vcarrera,vmatri,vruta,vturno,vTipo))
-        mysql.connection.commit()
-        
-    
-    return render_template('ventanaemergente.html')
-
-@app.route('/consulta')
-def consulta():
-    return render_template('ventanaconsulta.html')
-
-@app.route('/eliminar')
-def eliminar():
-    return render_template('elimin.html')
 
 #Ejecucion de nuestro programa
 if __name__ == '__main__':

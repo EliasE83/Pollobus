@@ -1,0 +1,36 @@
+{% extends 'plantilla.html' %}
+
+{% block body %}
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <form action="/registrorutabs" class="formulario" method="POST">
+                <div id="fondo">
+                    <img src="{{url_for('static', filename="UPQLOGOREDONDO.png")}}" class="logoRedondo">
+            
+                    <h1 class="bustexto">Registro de ruta</h1>            
+            
+                    <label class="label">Nombre</label>
+                    <input class="input" type="text" name="rnombre" required/>
+            
+                    <label class="label">Numero</label>
+                    <input class="input" type="number" name="rnumero" required/>
+                    
+                    <label class="label">Nº Paradas</label>
+                    <input class="input" type="number" name="rparadas" required/> 
+
+                    <button id="btn_iniciar" type="submit">Registrar</button>
+            
+                </div>
+                </form>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'plantilla.html' %}
+
+{% block body %}
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <form action="/editarbusBD/{{lscBus.0.0}}" class="formulario" method="POST">
+                <div id="fondo">
+                    <img src="{{url_for('static', filename="UPQLOGOREDONDO.png")}}" class="logoRedondo">
+            
+                    <h1 class="bustexto">Edicion de registro</h1>            
+            
+                    <label class="label">Nº Asientos</label>
+                    <input class="input" type="number" name="reasientos" value="{{lscBus.0.2}}" required/>
+            
+                    <label class="label">Capacidad del tanque</label>
+                    <input class="input" type="number" name="retanque" value="{{lscBus.0.3}}" required/>
+                    
+                    
+
+                    <label class="label">Modelo</label>
+                    <select class="select" name="remodelo" id="">
+                            <option >Seleccione un modelo</option>
+                        {% for bus in lscBus %}
+                            <option value="{{bus.1}}">{{bus.1}}</option>
+                        {% endfor %}
+                    </select>
+
+                    <button id="btn_iniciar" type="submit">Actualizar</button>
+            
+                </div>
+                </form>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

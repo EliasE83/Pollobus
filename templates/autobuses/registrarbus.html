@@ -1,0 +1,43 @@
+{% extends 'plantilla.html' %}
+
+{% block body %}
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <form action="/registrarbusBD" class="formulario" method="POST">
+                <div id="fondo">
+                    <img src="{{url_for('static', filename="UPQLOGOREDONDO.png")}}" class="logoRedondo">
+            
+                    <h1 class="bustexto">Registro de autobus</h1>            
+            
+                    <label class="label">Nº Asientos</label>
+                    <input class="input" type="number" name="asientos" required/>
+            
+                    <label class="label">Capacidad del tanque</label>
+                    <input class="input" type="number" name="tanque" required/>
+                    
+                    
+
+                    <label class="label">Modelo</label>
+                    <select class="select" name="rmodelo" id="">
+                            <option >Seleccione un modelo</option>
+                        {% for mod in lsModelo %}
+                            <option value="{{mod.0}}">{{mod.1}}</option>
+                        {% endfor %}
+                    </select>
+
+                    <button id="btn_iniciar" type="submit">Registrar</button>
+            
+                </div>
+                </form>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
