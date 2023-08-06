@@ -2,10 +2,100 @@
 
 {% block body %}
 
-<div class="container">
+<div class="container text-center">
     <div class="row">
-        <div class="col-md-12">
-            <h1 class="text-center">Bienvenido</h1>
+        <div class="col-md-6">
+            <h1 class="text-center">Rutas en activo</h1>
+        <table class="table">
+            <thead>
+                <tr class="table-success">
+                    <th scope="col">Id</th>
+                    <th scope="col">Nº Ruta</th>
+                    <th scope="col">Autobus</th>
+                    <th scope="col">Periodo</th>
+                    <th scope="col">Estado</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                {% for ruta in lsConsulta %}
+                <tr>
+                    <td>{{ruta.0}}</td>
+                    <td>{{ruta.1}}</td>
+                    <td>{{ruta.2}}</td>
+                    <td>{{ruta.3}}</td>
+                    <td>
+                        <a data-bs-toggle="modal" data-bs-target="#DesactivarR" class="btn btn-secondary"><i class="bi bi-x-circle"></i></a>
+
+
+                        <div class="modal fade" id="DesactivarR" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Desactivar Ruta</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        ¿Está seguro que desea desactivar esta ruta?
+                                    </div>
+                                    <div class="modal-footer">
+                                    <a href="/desactivaruta/{{ruta.0}}" class="btn btn-danger">Sí</a>    
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>                                            
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>    
+
+        </div>
+
+        <div class="col-md-6">
+            <h1 class="text-center">Operadores en activo</h1>
+            <table class="table">
+                <thead>
+                    <tr class="table-success">
+                        <th scope="col">Ruta activa</th>
+                        <th scope="col">Operador Asignado</th>
+                        <th scope="col">Autobus</th>
+                        <th scope="col">Estado</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    {% for ruta in lsConsulta2 %}
+                    <tr>
+                        <td>{{ruta.0}}</td>
+                        <td>{{ruta.1}}</td>
+                        <td>{{ruta.2}}</td>
+                        <td>
+                            <a data-bs-toggle="modal" data-bs-target="#DesactivarO" class="btn btn-secondary"><i class="bi bi-x-circle"></i></a>
+    
+    
+                            <div class="modal fade" id="DesactivarO" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Desactivar Operador</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            ¿Está seguro que desea desactivar este Operador?
+                                        </div>
+                                        <div class="modal-footer">
+                                        <a href="/desactivarop/{{ruta.0}}" class="btn btn-danger">Sí</a>    
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>   
+
         </div>
     </div>
 </div>

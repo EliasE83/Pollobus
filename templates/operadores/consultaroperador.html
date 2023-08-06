@@ -1,0 +1,37 @@
+{% extends 'plantilla.html' %}
+
+{% block body %}
+
+<div class="container text-center">
+    <h1 class="display-4">Consulta de Operadores</h1>
+    <div class="row">
+
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Nº Licencia</th>
+                        <th scope="col">Nº Empleado</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    {% for operador in lsOperador %}
+                    <tr>
+                        <td>{{operador.0}}</td>
+                        <td>{{operador.1}}</td>
+                        <td>{{operador.2}}</td>
+                        <td>{{operador.3}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock %}
+

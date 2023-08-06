@@ -1,0 +1,50 @@
+{% extends 'plantilla.html' %}
+
+{% block body %}
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <form action="/registroalumnoBD" class="formulario" method="POST">
+                <div id="fondo">
+                    <!-- <img src="{{url_for('static', filename="UPQLOGOREDONDO.png")}}" class="logoRedondo">   -->
+                    <h1 class="bustexto">Registro de Alumno</h1>            
+            
+                    <label class="label">Nombre</label>
+                    <input class="form-input" type="text" name="anombre" required/>
+
+                    <label class="label">Apellido Paterno</label>
+                    <input class="form-input" type="text" name="aap" required/>
+
+                    <label class="label">Apellido materno</label>
+                    <input class="form-input" type="text" name="aam" required/>
+
+                    <label class="label">Matricula</label>
+                    <input class="form-input" type="text" name="amatricula" required/>
+            
+                    <label class="label">Carrera</label>
+                    <select class="form-select" name="acarrera" id="">
+                        <option selected>Seleccione una carrera</option>
+                        <option value="1">Ingenieria Mecatronica</option>
+                        <option value="2">Ingenieria en Sistemas Computacionales</option>
+                        <option value="3">Ingenieria en Tecnologia Automotriz</option>
+                        <option value="4">Ingenieria en Tecnologias de Manufactura</option>
+                        <option value="5">Ingenieria en Redes y Telecomunicaciones</option>
+                        <option value="6">Licenciatura en Administracion y Gestion Empresarial</option>
+                        <option value="7">Licenciatura en Negocios Internacionales</option>
+                    </select>
+
+                    <button id="btn_iniciar" type="submit">Registrar</button>
+            
+                </div>
+                </form>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

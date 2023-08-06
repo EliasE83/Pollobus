@@ -2,4 +2,59 @@
 
 {% block body %}
 
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <form action="/asignarbusBD" class="formulario" method="POST">
+                <div id="fondo">
+                    <img src="{{url_for('static', filename="UPQLOGOREDONDO.png")}}" class="logoRedondo">
+            
+                    <h1 class="bustexto">Asignar autobus</h1>   
+
+                    <div class="mb-3">
+                        <label class="label">Ruta a asignar</label>
+                        <select class="form-select" name="asigrut" id="">
+                                <option selected>Seleccione una ruta</option>
+                            {% for rut in lsRutas %}
+                                <option value="{{rut.0}}">{{rut.1}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="label">Autobus a asignar</label>
+                        <select class="form-select" name="asigbus" id="">
+                                <option selected>Seleccione un autobus</option>
+                            {% for bus in lsBus %}
+                                <option value="{{bus.0}}">{{bus.0}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="label">Periodo a asignar</label>
+                        <select class="form-select" name="asigper" id="">
+                                <option selected>Seleccione un periodo</option>
+                            {% for cuat in lsCuatri %}
+                                <option value="{{cuat.0}}">{{cuat.1}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <button id="btn_iniciar" type="submit">Asignar</button>
+            
+                </div>
+                </form>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
 {% endblock %}

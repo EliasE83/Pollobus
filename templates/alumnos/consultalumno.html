@@ -1,0 +1,33 @@
+{% extends 'plantilla.html' %}
+
+{% block body %}
+
+<div class="container text-center">
+    <h1 class="display-4">Consulta de Alumnos</h1>
+    <div class="row">
+
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Matricula</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    {% for alu in lsAlumno %}
+                    <tr>
+                        <td>{{alu.0}}</td>
+                        <td>{{alu.1}}</td>
+                        <td>{{alu.2}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

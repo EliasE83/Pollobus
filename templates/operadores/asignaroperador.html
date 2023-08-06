@@ -1,0 +1,47 @@
+{% extends 'plantilla.html' %}
+
+{% block body %}
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <form action="/asignaroperadorBD" class="formulario" method="POST">
+                <div id="fondo">
+                    <!-- <img src="{{url_for('static', filename="UPQLOGOREDONDO.png")}}" class="logoRedondo"> -->
+            
+                    <h1 class="bustexto">Asignar Operador</h1>   
+
+                    <div class="mb-3">
+                        <label class="label">Ruta a asignar</label>
+                        <select class="form-select" name="asigrutop" id="">
+                                <option selected>Seleccione una ruta</option>
+                            {% for rut in lsRegistro %}
+                                <option value="{{rut.0}}">{{rut.1}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="label">Operador a asignar</label>
+                        <select class="form-select" name="asigop" id="">
+                                <option selected>Seleccione un operador</option>
+                            {% for bus in lsOperadorAS %}
+                                <option value="{{bus.0}}">{{bus.1}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <button id="btn_iniciar" type="submit">Asignar</button>
+            
+                </div>
+                </form>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'plantilla.html' %}
+
+{% block body %}
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <form action="/registroperadorBD" class="formulario" method="POST">
+                <div id="fondo">
+                    <!-- <img src="{{url_for('static', filename="UPQLOGOREDONDO.png")}}" class="logoRedondo">   -->
+                    <h1 class="bustexto">Registro de Operador</h1>            
+            
+                    <label class="label">Nombre</label>
+                    <input class="input" type="text" name="onombre" required/>
+
+                    <label class="label">Apellido Paterno</label>
+                    <input class="input" type="text" name="oap" required/>
+
+                    <label class="label">Apellido Materno</label>
+                    <input class="input" type="text" name="oam" required/>
+            
+                    <label class="label">Nº Licencia</label>
+                    <input class="input" type="text" name="olicencia" required/>
+                    
+                    <label class="label">Nº Empleado</label>
+                    <input class="input" type="text" name="onoemp" required/> 
+
+                    <button id="btn_iniciar" type="submit">Registrar</button>
+            
+                </div>
+                </form>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
