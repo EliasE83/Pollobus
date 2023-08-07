@@ -31,7 +31,7 @@ def login():
 def inicio():
     con = pyodbc.connect(app.config['SQL_SERVER_URI'])
     cursor = con.cursor()
-    cursor.execute('select id_registroautobus, Rutas.numero, RegistroAutobuses.id_autobus, Cuatrimestres.periodo from RegistroAutobuses inner join Rutas on Rutas.id_ruta = RegistroAutobuses.id_ruta inner join Cuatrimestres on Cuatrimestres.id_cuatrimestre = RegistroAutobuses.id_cuatrimestre where RegistroAutobuses.Estatus = 1')
+    cursor.execute('select id_registroautobus, Rutas.numero, Rutas.nombre, RegistroAutobuses.id_autobus, Cuatrimestres.periodo from RegistroAutobuses inner join Rutas on Rutas.id_ruta = RegistroAutobuses.id_ruta inner join Cuatrimestres on Cuatrimestres.id_cuatrimestre = RegistroAutobuses.id_cuatrimestre where RegistroAutobuses.Estatus = 1')
     consulta = cursor.fetchall()
 
     cursor.execute('select RegistroAutobuses.id_registroautobus ,Operadores.numeroempleado, RegistroAutobuses.id_autobus from RegistroOperadores inner join Operadores on Operadores.id_operador = RegistroOperadores.id_operador inner join RegistroAutobuses on RegistroAutobuses.id_registroautobus = RegistroOperadores.id_registroautobus where RegistroOperadores.Estatus = 1')
