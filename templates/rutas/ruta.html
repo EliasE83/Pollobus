@@ -27,7 +27,7 @@
                             <td>
                                 {% if ruta.0 > 6 %}
                                 <a href="/editaruta/{{ruta.0}}" class="btn btn-warning">Editar</a>
-                                <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Eliminar">Eliminar</a>
+                                <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Eliminar" data-id="{{ruta.0}}">Eliminar</a>
                                 <!-- Modal para eliminar -->
                                 <div class="modal fade" id="Eliminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
@@ -78,7 +78,6 @@
             </div>
         </div>
     </div>
-
     
 
     

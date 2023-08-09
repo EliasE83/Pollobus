@@ -1,33 +1,60 @@
 #Importacion del framework
 from flask import Flask, render_template, request, redirect, url_for, flash
 #from flask_mysqldb import MySQL
+from flask_login import LoginManager, login_required, login_user, logout_user
+
 import pyodbc
+from user import User
+from mockdbhelper import dbHelper
+
+DB=dbHelper()
 
 #Inicializacion del Servidor
-app=Flask(__name__,)
 
-#Configuracion de la conexion 
- 
-#app.config['MYSQL_HOST']='localhost'
-#app.config['MYSQL_USER']='root'
-#app.config['MYSQL_PASSWORD']=''
-#app.config['MYSQL_DB']='pi'
-#app.secret_key='mysecretkey'
-#mysql=MySQL(app)
+app=Flask(__name__)
+login_manager = LoginManager(app) 
+app.secret_key = 'tPXJY3X37Qybz4QykV+hOyUxVQeEXf1Ao2C8upz+fGQXKsM'
 
+app.config['SQL_SERVER_URI']='Driver={SQL Server};Server=OMEN;Database=ProyectoIntegrador;UID=Edgar;PWD=;Trusted_Connection=yes;'
 
-#Conexion a SQL Server
-
-app.config['SQL_SERVER_URI']='Driver={SQL Server};Server=ELIAS;Database=ProyectoIntegrador;UID=DBA;PWD=1234;Trusted_Connection=yes;'
+@login_manager.user_loader
+def load_user(user_id):
+    user_password = DB.get_user(user_id)
+    if user_password:
+        return User(user_id)
 
 #Declaracion de la ruta http://localhost:5000
 @app.route('/')
-def login():
+def principal():
     return render_template('login.html')
+
+@app.route("/logout")
+def logout():
+    logout_user()
+    return redirect(url_for("principal"))
+
+
+@app.route('/login', methods=['POST'])
+def login():
+    if request.method== 'POST':
+        user = request.form['Usuario']
+        password = request.form['Contraseña']
+        user_password = DB.get_user(user)
+        if user_password and user_password==password:
+            usuario= User(user)
+            login_user(usuario)
+            return redirect(url_for('inicio'))      
+        
+        flash ('Credenciales incorrectas')
+        return render_template('login.html')    
+        
+    else:
+        return render_template('login.html')
 
 #Ruta http://localhost:5000/guardar tipo POST para insert
 
 @app.route('/index')
+@login_required
 def inicio():
     con = pyodbc.connect(app.config['SQL_SERVER_URI'])
     cursor = con.cursor()
@@ -41,6 +68,7 @@ def inicio():
 #Rutas
 
 @app.route('/registroruta')
+@login_required
 def registroruta():
     return render_template('rutas/registroruta.html')
 
@@ -54,14 +82,23 @@ def registrorutabs():
         
         con = pyodbc.connect(app.config['SQL_SERVER_URI'])
         cursor = con.cursor()
-        cursor.execute('insert into Rutas (nombre, numero, noparadas) values (?,?,?)', (vrnombre,vrnumero,vrparadas))
-        con.commit()
+        cursor.execute('select dbo.fn_rutaExistente(?)',(vrnumero,))
+        conNum=cursor.fetchone()
+        print(conNum)
+        if (conNum[0] == False):
+            cursor.execute('insert into Rutas (nombre, numero, noparadas) values (?,?,?)', (vrnombre,vrnumero,vrparadas))
+            con.commit()
+            con.close()
+            flash('Ruta registrada')
+            return render_template('rutas/registroruta.html')
         con.close()
-        
-    return render_template('ventanaemergente.html')
+        flash('La ruta que intentas ingresar ya está registrada')
+        return render_template('rutas/registroruta.html')
+    return render_template('rutas/registroruta.html')
 
 
 @app.route('/consultaruta')
+@login_required
 def consultaruta():
     con = pyodbc.connect(app.config['SQL_SERVER_URI'])
     cursor = con.cursor()
@@ -70,6 +107,7 @@ def consultaruta():
     return render_template('rutas/ruta.html', lsRutas = consultas)
 
 @app.route('/editaruta/<id>')
+@login_required
 def editaruta(id):
     con = pyodbc.connect(app.config['SQL_SERVER_URI'])
     cursor = con.cursor()
@@ -104,6 +142,7 @@ def eliminaruta(id):
 #Autobuses
 
 @app.route('/consultabus')
+@login_required
 def consultabus():
     con = pyodbc.connect(app.config['SQL_SERVER_URI'])
     cursor = con.cursor()
@@ -121,6 +160,7 @@ def eliminarbus(id):
     return redirect(url_for('consultabus'))
 
 @app.route('/registrarbus')
+@login_required
 def registrarbus():
     con = pyodbc.connect(app.config['SQL_SERVER_URI'])
     cursor = con.cursor()
@@ -142,6 +182,7 @@ def registrarbusBD():
     return render_template('ventanaemergente.html')
 
 @app.route('/editabus/<id>')
+@login_required
 def editabus(id):
     con = pyodbc.connect(app.config['SQL_SERVER_URI'])
     cursor = con.cursor()
@@ -164,6 +205,7 @@ def editarbusBD(id):
     return redirect(url_for('consultabus'))
 
 @app.route('/asignarbus')
+@login_required
 def asignarbus():
     con = pyodbc.connect(app.config['SQL_SERVER_URI'])
     cursor = con.cursor()
@@ -205,6 +247,7 @@ def desactivaruta(id):
 #Operadores
 
 @app.route('/registroperador')
+@login_required
 def registroperador():
     return render_template('operadores/registroperador.html')
 
@@ -238,6 +281,7 @@ def registroperadorBD():
     return render_template('ventanaemergente.html')
 
 @app.route('/consultaroperador')
+@login_required
 def consultaroperador():
     con = pyodbc.connect(app.config['SQL_SERVER_URI'])
     cursor = con.cursor()
@@ -246,6 +290,7 @@ def consultaroperador():
     return render_template('operadores/consultaroperador.html', lsOperador = consultas)
 
 @app.route('/asignaroperador')
+@login_required
 def asignaroperador():
     con = pyodbc.connect(app.config['SQL_SERVER_URI'])
     cursor = con.cursor()

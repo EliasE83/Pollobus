@@ -3,6 +3,7 @@
 {% block body %}
 
 <div class="container">
+    
 
     <div class="row">
 
@@ -12,7 +13,16 @@
                 <div id="fondo">
                     <img src="{{url_for('static', filename="UPQLOGOREDONDO.png")}}" class="logoRedondo">
             
-                    <h1 class="bustexto">Registro de ruta</h1>            
+                    <h1 class="bustexto">Registro de ruta</h1>
+                    {% with mensajes= get_flashed_messages() %}
+                    {%if mensajes %}
+                        {% for msj in mensajes %}
+                        <div class="alert alert-danger" role="alert">
+                        <strong>{{msj}}</strong>
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                    {% endwith %}       
             
                     <label class="label">Nombre</label>
                     <input class="input" type="text" name="rnombre" required/>

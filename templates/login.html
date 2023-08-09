@@ -8,19 +8,26 @@
 
 </head>
 <body>
-    <form action="/index" class="formulario">
+    <form action="/login" class="formulario" method="POST">
     <div id="fondo">
         <img src="{{url_for('static', filename="UPQLOGOREDONDO.png")}}" class="logoRedondo">
 
         <h1 class="bustexto">INICIO DE SESIÓN</h1>
-
-
-
+        
+        {% with mensajes= get_flashed_messages() %}
+        {%if mensajes %}
+            {% for msj in mensajes %}
+            <div class="alert alert-danger" role="alert">
+                <strong>{{msj}}</strong>
+            </div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
         <label class="label">Usuario</label>
-        <input class="input" type="text" required/>
+        <input class="input" type="text" required name="Usuario">
 
         <label class="label">Contraseña</label>
-        <input class="input" type="password" required/>
+        <input class="input" type="password" required name="Contraseña">
 
 
         <button id="btn_iniciar" type="submit">INICIAR SESIÓN</button>
