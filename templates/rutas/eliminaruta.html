@@ -1,0 +1,36 @@
+{% extends 'plantilla.html' %}
+
+{% block body %}
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <form action="/eliminarutaBD/{{lscRutasE.0.0}}" class="formulario">
+                <div id="fondo">
+                    <img src="{{url_for('static', filename="UPQLOGOREDONDO.png")}}" class="logoRedondo">
+            
+                    <h1 class="bustexto">¿Está seguro que desea eliminar la siguiente ruta?</h1>            
+            
+                    <label class="label">Nombre</label>
+                    <input class="input" type="text" name="renombre" value="{{lscRutasE.0.1}}" readonly/>
+            
+                    <label class="label">Numero</label>
+                    <input class="input" type="number" readonly name="renumero" value="{{lscRutasE.0.2}}"  readonly/>
+                    
+                    <label class="label">Nº Paradas</label>
+                    <input class="input" type="number" name="reparadas" value="{{lscRutasE.0.3}}" readonly/> 
+
+                    <button id="btn_iniciar" type="submit">Eliminar</button>
+            
+                </div>
+                </form>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

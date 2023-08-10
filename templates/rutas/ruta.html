@@ -25,9 +25,8 @@
                             <td> {{ruta.2}} </td>
                             <td> {{ruta.3}} </td>                            
                             <td>
-                                {% if ruta.0 > 6 %}
                                 <a href="/editaruta/{{ruta.0}}" class="btn btn-warning">Editar</a>
-                                <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Eliminar" data-id="{{ruta.0}}">Eliminar</a>
+                                <a class="btn btn-danger" href="/eliminaruta/{{ruta.0}}" >Eliminar</a>
                                 <!-- Modal para eliminar -->
                                 <div class="modal fade" id="Eliminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
@@ -46,29 +45,6 @@
                                     </div>
                                     </div>
                                 </div>
-                                {% else %}
-                                <a href="" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Ver paradas</a>
-
-
-                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Paradas</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                En proceso
-                                            </div>
-                                            <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>                                            
-                                            </div>
-                                        </div>
-                                        </div>
-                                    </div>
-                                    
-
-                                {% endif %}
                             </td>
                             
                         </tr>

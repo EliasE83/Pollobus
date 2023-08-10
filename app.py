@@ -1,7 +1,7 @@
 #Importacion del framework
 from flask import Flask, render_template, request, redirect, url_for, flash
-#from flask_mysqldb import MySQL
 from flask_login import LoginManager, login_required, login_user, logout_user
+#from flask_mysqldb import MySQL
 
 import pyodbc
 from user import User
@@ -15,7 +15,7 @@ app=Flask(__name__)
 login_manager = LoginManager(app) 
 app.secret_key = 'tPXJY3X37Qybz4QykV+hOyUxVQeEXf1Ao2C8upz+fGQXKsM'
 
-app.config['SQL_SERVER_URI']='Driver={SQL Server};Server=OMEN;Database=ProyectoIntegrador;UID=Edgar;PWD=;Trusted_Connection=yes;'
+app.config['SQL_SERVER_URI']='Driver={SQL Server};Server=Elias;Database=ProyectoIntegrador;UID=DBA;PWD=1234;Trusted_Connection=yes;'
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -102,7 +102,7 @@ def registrorutabs():
 def consultaruta():
     con = pyodbc.connect(app.config['SQL_SERVER_URI'])
     cursor = con.cursor()
-    cursor.execute('select * from Rutas')
+    cursor.execute('select * from Rutas where Estatus = 1')
     consultas = cursor.fetchall()
     return render_template('rutas/ruta.html', lsRutas = consultas)
 
@@ -134,7 +134,16 @@ def editarutaBD(id):
 def eliminaruta(id):
     con = pyodbc.connect(app.config['SQL_SERVER_URI'])
     cursor = con.cursor()
-    cursor.execute('delete from Rutas where id_ruta = ?', (id))
+    cursor.execute('select * from Rutas where id_ruta = ?', (id))
+    editaruta = cursor.fetchall()
+    return render_template('rutas/eliminaruta.html', lscRutasE = editaruta)
+
+
+@app.route('/eliminarutaBD/<id>')
+def eliminarutabd(id):
+    con = pyodbc.connect(app.config['SQL_SERVER_URI'])
+    cursor = con.cursor()
+    cursor.execute('update Rutas set Estatus = 0 where id_ruta = ?', (id))
     con.commit()
     con.close()
     return redirect(url_for('consultaruta'))
